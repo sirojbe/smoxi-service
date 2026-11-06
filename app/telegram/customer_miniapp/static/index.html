@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <title>SMOXI — Mijoz</title>
+  <script src="/static/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="/customer/static/app.css?v=2" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">SMOXI</div>
+    <div id="subtitle" class="sub">Taʼmir holati</div>
+  </header>
+
+  <main>
+    <p id="status" class="hint">Yuklanmoqda…</p>
+    <div id="orders" class="list"></div>
+    <section id="detail" class="detail hidden">
+      <h2 id="d-number"></h2>
+      <p id="d-status" class="badge"></p>
+      <p id="d-problem"></p>
+      <p id="d-price"></p>
+      <div id="d-actions" class="actions hidden">
+        <button type="button" id="btn-approve" class="btn primary">Tasdiqlash</button>
+        <button type="button" id="btn-reject" class="btn danger">Rad etish</button>
+      </div>
+      <h3>Timeline</h3>
+      <div id="timeline" class="list"></div>
+      <h3>Kafolat</h3>
+      <p id="warranty" class="hint">—</p>
+      <button type="button" id="btn-back" class="btn">Orqaga</button>
+    </section>
+  </main>
+  <script src="/customer/static/app.js?v=2"></script>
+</body>
+</html>

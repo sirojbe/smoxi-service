@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>SMOXI — Xodim</title>
+  <script src="/static/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="/static/app.css?v=7" />
+</head>
+<body class="locked">
+  <div id="boot" class="boot">
+    <div class="boot-card">
+      <div class="boot-brand">SMOXI</div>
+      <div id="boot-msg" class="boot-msg">Kirish tekshirilmoqda…</div>
+
+      <form id="login-form" class="login-form" hidden>
+        <label class="lbl" for="login-chat">Telegram ID</label>
+        <input id="login-chat" class="field" inputmode="numeric" placeholder="654114332" autocomplete="username" />
+        <button type="submit" id="login-submit" class="btn primary">Kirish</button>
+        <p id="login-status" class="hint"></p>
+        <p class="login-help">
+          1) Botga <b>/id</b> yuboring<br />
+          2) ID ni Sozlamalardagi «Xodim Telegram ID lari» ga qoʻshing → Saqlash<br />
+          3) Shu ID bilan kiring (yoki botdan «SMOXI ochish»)
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <div id="app" class="app" hidden>
+    <header class="top">
+      <div>
+        <div class="brand">SMOXI</div>
+        <div id="subtitle" class="sub">Xodim paneli</div>
+      </div>
+      <button type="button" id="logout-btn" class="chip ghost">Chiqish</button>
+    </header>
+
+    <nav class="tabs" role="tablist">
+      <button type="button" class="tab active" data-tab="unread">Oʻqilmagan</button>
+      <button type="button" class="tab" data-tab="orders">Buyurtmalar</button>
+      <button type="button" class="tab" data-tab="reply">Javob</button>
+      <button type="button" class="tab" data-tab="ready">Tayyor</button>
+      <button type="button" class="tab" data-tab="pickup">Topshirish</button>
+      <button type="button" class="tab" data-tab="stock">Ombor</button>
+    </nav>
+
+    <main>
+      <section id="panel-unread" class="panel active">
+        <div id="unread-summary" class="summary"></div>
+        <div id="unread-list" class="list"></div>
+      </section>
+
+      <section id="panel-orders" class="panel">
+        <div id="orders-list" class="list"></div>
+      </section>
+
+      <section id="panel-reply" class="panel">
+        <div class="panel-head">
+          <h2>Mijozga javob</h2>
+          <p>Tanlangan suhbatga xabar yuborish</p>
+        </div>
+        <label class="lbl" for="reply-chat">Suhbat</label>
+        <select id="reply-chat" class="field"></select>
+        <label class="lbl" for="reply-body">Matn</label>
+        <textarea id="reply-body" class="field area" rows="4" placeholder="Mijozga yozing…"></textarea>
+        <button type="button" id="reply-send" class="btn primary">Yuborish</button>
+        <p id="reply-status" class="hint"></p>
+      </section>
+
+      <section id="panel-ready" class="panel">
+        <div class="panel-head">
+          <h2>Tayyor qilish</h2>
+          <p>Taʼmir tugagach — mijozni chaqirish uchun «Tayyor»</p>
+        </div>
+        <div id="ready-list" class="list"></div>
+        <label class="lbl" for="ready-number">Buyurtma raqami</label>
+        <input id="ready-number" class="field" placeholder="WO-000005" autocomplete="off" />
+        <button type="button" id="ready-send" class="btn primary">Tayyor qilish</button>
+        <p id="ready-status" class="hint"></p>
+      </section>
+
+      <section id="panel-pickup" class="panel">
+        <div class="panel-head">
+          <h2>Mijozga topshirish</h2>
+          <p>Mijoz kelganda qurilmani topshiring (status: Topshirildi)</p>
+        </div>
+        <div id="pickup-list" class="list"></div>
+        <label class="lbl" for="pickup-number">Buyurtma raqami</label>
+        <input id="pickup-number" class="field" placeholder="WO-000005" autocomplete="off" />
+        <label class="check-row">
+          <input type="checkbox" id="pickup-allow-unpaid" />
+          Qarz bilan topshirish (toʻlov qoldigʻi boʻlsa)
+        </label>
+        <button type="button" id="pickup-send" class="btn primary">Mijozga topshirish</button>
+        <p id="pickup-status" class="hint"></p>
+      </section>
+
+      <section id="panel-intake" class="panel">
+        <div class="panel-head">
+          <h2>Yangi buyurtma</h2>
+          <p>Tez qabul — telefon, qurilma va muammo</p>
+        </div>
+        <label class="lbl" for="in-phone">Telefon</label>
+        <input id="in-phone" class="field" inputmode="tel" placeholder="+998901234567" autocomplete="tel" />
+        <label class="lbl" for="in-name">Mijoz F.I.Sh.</label>
+        <input id="in-name" class="field" placeholder="Ixtiyoriy" />
+        <div class="row2">
+          <div>
+            <label class="lbl" for="in-brand">Brend</label>
+            <input id="in-brand" class="field" placeholder="Apple" />
+          </div>
+          <div>
+            <label class="lbl" for="in-model">Model</label>
+            <input id="in-model" class="field" placeholder="iPhone 13" />
+          </div>
+        </div>
+        <label class="lbl" for="in-problem">Muammo</label>
+        <textarea id="in-problem" class="field area" rows="3" placeholder="Ekran sindi…"></textarea>
+        <div class="row2">
+          <div>
+            <label class="lbl" for="in-cost">Taxminiy narx</label>
+            <input id="in-cost" class="field" type="number" min="0" step="1000" value="0" />
+          </div>
+          <div>
+            <label class="lbl" for="in-acc">Aksessuarlar</label>
+            <input id="in-acc" class="field" placeholder="Quti…" />
+          </div>
+        </div>
+        <button type="button" id="intake-send" class="btn primary">Buyurtmani yaratish</button>
+        <p id="intake-status" class="hint"></p>
+      </section>
+
+      <section id="panel-stock" class="panel">
+        <div class="panel-head">
+          <h2>Ombor</h2>
+          <p>Qoldiqlar, kirim/chiqim va yangi tovar</p>
+        </div>
+        <div class="stock-toolbar">
+          <input id="stock-q" class="field grow" placeholder="SKU yoki nomi…" />
+          <button type="button" id="stock-refresh" class="btn ghost compact">Yangilash</button>
+        </div>
+        <label class="check-row">
+          <input type="checkbox" id="stock-low" />
+          Faqat kam qoldiq
+        </label>
+        <div id="stock-list" class="list"></div>
+
+        <div class="stock-create">
+          <div class="stock-create-title">Yangi tovar</div>
+          <label class="lbl" for="st-sku">SKU</label>
+          <input id="st-sku" class="field" placeholder="SCR-IP13" />
+          <label class="lbl" for="st-name">Nomi</label>
+          <input id="st-name" class="field" placeholder="iPhone 13 ekran" />
+          <div class="row2">
+            <div>
+              <label class="lbl" for="st-qty">Qoldiq</label>
+              <input id="st-qty" class="field" type="number" min="0" value="0" />
+            </div>
+            <div>
+              <label class="lbl" for="st-min">Min</label>
+              <input id="st-min" class="field" type="number" min="0" value="0" />
+            </div>
+          </div>
+          <label class="lbl" for="st-price">Sotuv narxi</label>
+          <input id="st-price" class="field" type="number" min="0" value="0" />
+          <button type="button" id="stock-create" class="btn primary">Saqlash</button>
+          <p id="stock-create-status" class="hint"></p>
+        </div>
+        <p id="stock-status" class="hint"></p>
+      </section>
+    </main>
+
+    <div id="adjust-sheet" class="sheet" hidden>
+      <div class="sheet-backdrop" id="adjust-backdrop"></div>
+      <div class="sheet-card" role="dialog" aria-modal="true" aria-labelledby="adjust-title">
+        <div class="sheet-head">
+          <h3 id="adjust-title">Qoldiqni yangilash</h3>
+          <button type="button" class="chip ghost" id="adjust-close" aria-label="Yopish">✕</button>
+        </div>
+        <p id="adjust-item" class="sheet-item"></p>
+        <label class="lbl" for="adjust-qty" id="adjust-qty-label">Miqdor</label>
+        <input id="adjust-qty" class="field" type="number" min="0" step="1" value="1" />
+        <label class="lbl" for="adjust-reason">Izoh</label>
+        <input id="adjust-reason" class="field" placeholder="Ixtiyoriy" />
+        <button type="button" id="adjust-submit" class="btn primary">Tasdiqlash</button>
+        <p id="adjust-status" class="hint"></p>
+      </div>
+    </div>
+
+    <nav class="dock" aria-label="Tezkor amallar">
+      <button type="button" class="dock-side" data-tab="orders">
+        <span class="dock-ico">≡</span>
+        <span class="dock-lbl">Buyurtma</span>
+      </button>
+      <button type="button" class="dock-fab" id="fab-intake" title="Yangi buyurtma" aria-label="Yangi buyurtma">+</button>
+      <button type="button" class="dock-side" data-tab="stock">
+        <span class="dock-ico">▣</span>
+        <span class="dock-lbl">Ombor</span>
+      </button>
+    </nav>
+  </div>
+
+  <script src="/static/app.js?v=7"></script>
+</body>
+</html>

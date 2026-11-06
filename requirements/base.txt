@@ -1,0 +1,12 @@
+# Shared runtime dependencies for SMOXI Service (desktop + server).
+# Install: pip install -r requirements/base.txt
+
+pydantic>=2.10
+pydantic-settings>=2.7
+loguru>=0.7
+SQLAlchemy>=2.0
+alembic>=1.14
+passlib[argon2]>=1.7
+cryptography>=42.0
+reportlab>=4.2
+openpyxl>=3.1

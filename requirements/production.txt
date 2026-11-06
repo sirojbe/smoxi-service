@@ -1,0 +1,9 @@
+# Production deployment dependencies (desktop + server).
+# Install: pip install -r requirements/production.txt
+
+-r desktop.txt
+-r server.txt
+
+# Optional hardening / ops helpers (enable as needed in later phases)
+# sentry-sdk>=2.0
+# prometheus-client>=0.21

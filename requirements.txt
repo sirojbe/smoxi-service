@@ -1,0 +1,4 @@
+# Convenience meta-file for local installs.
+# Prefer environment-specific files under requirements/.
+
+-r requirements/dev.txt

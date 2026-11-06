@@ -1,0 +1,137 @@
+# SMOXI Service — Python / PySide6 / FastAPI
+
+# --- Bytecode / caches ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+*.so
+
+# --- Virtual environments ---
+.venv/
+venv/
+ENV/
+env/
+.env/
+.virtualenv/
+
+# --- Environment & secrets ---
+.env
+.env.*
+!.env.example
+.smoxi_secret_key
+*.pem
+*.key
+secrets/
+credentials.json
+
+# --- Packaging / distribution ---
+build/
+dist/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+pip-wheel-metadata/
+
+# --- Nuitka / freeze / PyInstaller ---
+*.build/
+*.dist/
+*.onefile-build/
+*.nuitka*
+nuitka-crash-report.xml
+*.spec
+
+# --- Installer artifacts ---
+installer/Output/
+installer/*.exe
+*.iss.bak
+
+# --- Testing / coverage / type checkers ---
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+coverage.xml
+*.cover
+.cache/
+
+# --- IDE / editors ---
+.idea/
+.vscode/
+.cursor/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.code-workspace
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# --- Logs ---
+logs/*
+!logs/.gitkeep
+*.log
+
+# --- SQLite / local databases ---
+database/sqlite/*.db
+database/sqlite/*.db-*
+database/sqlite/*.sqlite
+database/sqlite/*.sqlite3
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# --- Runtime data ---
+backups/*
+!backups/.gitkeep
+uploads/*
+!uploads/.gitkeep
+tools/cloudflared.exe
+
+# --- Qt / PySide6 ---
+*.qmlc
+*.jsc
+moc_*.cpp
+ui_*.py
+*_rc.py
+
+# --- Translations (compiled) ---
+*.qm
+
+# --- Jupyter / notebooks (if used later) ---
+.ipynb_checkpoints/
+
+# --- Misc ---
+*.tmp
+*.temp
+*.bak
+*.orig
+.directory
